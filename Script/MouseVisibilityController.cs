@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MouseVisibilityController : MonoBehaviour
+{
+    private bool isCursorVisible = true;
+
+    void Update()
+    {
+        // ¼ì²âÊó±êµã»÷
+        if (Input.GetMouseButtonDown(0)) // 0 ÊÇ×ó¼üµã»÷
+        {
+            ToggleCursorVisibility(false);
+        }
+
+        // ¼ì²â°´ÏÂ Esc ¼ü
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleCursorVisibility(true);
+        }
+    }
+
+    void ToggleCursorVisibility(bool visibility)
+    {
+        isCursorVisible = visibility;
+        Cursor.visible = isCursorVisible;
+        Cursor.lockState = isCursorVisible ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+}
