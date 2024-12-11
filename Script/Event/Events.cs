@@ -9,6 +9,7 @@ namespace TPSShoot
 {
     public partial class Events
     {
+        // 这个的主要功能是后面的订阅就不用实例化了，直接用！
         static Events()
         {
             FieldInfo[] fields = typeof(Events).GetFields(BindingFlags.Public | BindingFlags.Static);

@@ -11,6 +11,9 @@ using System.Text;
 
 namespace TPSShoot
 {
+    /// <summary>
+    /// 处理响应
+    /// </summary>
     public partial class ClientServer
     {
         // 开启协程，接收消息
@@ -39,7 +42,7 @@ namespace TPSShoot
             try
             {
                 byte[] receivedData = udpClient.Receive(ref listenEndPoint); // 收到消息
-                BaseRequest baseRequest = ProtoBufUtils.SerializeBaseRequest(receivedData);
+                BaseRequest baseRequest = ProtoBufUtils.DeSerializeBaseRequest(receivedData);
                 if (baseRequest.RequestType == RequestType.RtLogin) // 如果收到的消息是登陆
                 {
                     if (baseRequest.RequestData == RequestData.RdStatus)
@@ -56,6 +59,10 @@ namespace TPSShoot
                         Console.WriteLine("发送者:" + baseRequest.Msg.UserName);
                         Console.WriteLine("内容:" + baseRequest.Msg.Msg_);
                     }
+                }
+                else if (baseRequest.RequestType == RequestType.RtMatch)
+                {
+                    Events.LoginResponse.Call(baseRequest); // 执行登录的订阅
                 }
             }
             catch (ObjectDisposedException)

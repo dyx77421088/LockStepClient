@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
 // 请求
 namespace TPSShoot
@@ -11,6 +12,8 @@ namespace TPSShoot
 
         public static Event<int> LoginSuccess; // 登陆成功！
 
+        public static Event<int, string, bool> MatchRequest; // 匹配请求
+        public static Event<BaseRequest> MatchResponse; // 匹配响应
     }
 
 }

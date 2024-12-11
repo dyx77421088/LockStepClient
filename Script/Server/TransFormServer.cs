@@ -12,7 +12,7 @@ namespace TPSShoot
 
         private void Update()
         {
-
+            ParticleSystem ps;
         }
     }
 }
